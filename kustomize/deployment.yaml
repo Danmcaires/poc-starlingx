@@ -5,7 +5,7 @@ metadata:
   labels:
     app: poc-starlingx
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: poc-starlingx
