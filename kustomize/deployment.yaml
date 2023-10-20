@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poc-starlingx
+  labels:
+    app: poc-starlingx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: poc-starlingx
+  template:
+    metadata:
+      labels:
+        app: poc-starlingx
+    spec:
+      containers:
+      - name: poc-starlingx
+        image: docker.io/brunomuniz/poc-starlingx:latest
+        env:
+          - name: MODE
+            value: node
+          - name: SERVER
+            value: 127.0.0.1:8000
+          - name: PORT
+            value: "8000"
+        ports:
+        - containerPort: 8000
