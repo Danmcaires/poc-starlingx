@@ -1,0 +1,10 @@
+namespace: default
+resources:
+  - helmrelease.yaml
+ConfigMapGenerator:
+  - name: poc-values
+    files:
+      values.yaml
+
+patchesStrategicMerge:
+  - values.yaml

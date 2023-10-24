@@ -1,0 +1,29 @@
+apiVersion: "helm.toolkit.fluxcd.io/v2beta1"
+kind: HelmRelease
+metadata:
+  name: poc-starlingx
+spec:
+  releaseName: poc-starlingx
+  interval: 2m
+  chart:
+    spec:
+      chart: poc-starlingx
+      version: 1.5.2
+      sourceRef:
+        kind: GitRepository
+        name: poc-starlingx
+  valuesFrom:
+    - kind: ConfigMap
+      name: poc-values
+      valuesKey: values.yaml
+---
+namespace: default
+resources:
+  - helmrelease.yaml
+ConfigMapGenerator:
+  - name: poc-values
+    files:
+      values.yaml
+
+patchesStrategicMerge:
+  - values.yaml
