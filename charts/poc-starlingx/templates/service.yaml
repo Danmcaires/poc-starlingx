@@ -7,7 +7,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 8100
+  - port: 8000
     targetPort: {{ .Values.image.containerPort }}
     nodePort: {{ .Values.kube.port }}
   selector:
